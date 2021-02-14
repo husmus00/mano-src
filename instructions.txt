@@ -1,3 +1,5 @@
+Programs to 
+
 List of commands:
 
 Note: Square brackets specify required arguments, parentheses specify optional arguments, "|" means that both
@@ -30,7 +32,7 @@ run:-
 	Description: Runs the program from memory (program must be loaded with 'load' beforehand). Will begin from
 	memory location 0 by default, and an address can be specified to start running from. Debug mode can be 
 	activated with the -d or --debug flags.
-	Usage: run (ADDRESS) ()
+	Usage: run (ADDRESS) (-d | --debug)
 quit:-
 	Description: Quits the program.
 	Usage: quit
