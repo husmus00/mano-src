@@ -1,3 +1,0 @@
->>>> [LOGGER 07:06:46 PM]: Starting at date Sun 07:06 PM 14/02/2021 in directory D:\05 - Projects\ManoMachine\Release Version\netcoreapp3.1\
-<<<< [LOGGER 07:07:01 PM]: Ending at date Sun 07:07 PM 14/02/2021 in directory D:\05 - Projects\ManoMachine\Release Version\netcoreapp3.1\
-
