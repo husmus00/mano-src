@@ -1,0 +1,47 @@
+List of commands:
+
+Note: Square brackets specify required arguments, parentheses specify optional arguments, "|" means that both
+arguments are equivalent and either is accepted, and a comma signifies alternative forms of the command.
+
+read:-
+	Description: Inputs the text file which contains the program. The file name is specified by FILE, without
+	the .txt extension (for example, 'read program' will input program.txt). After specifying the file name for the
+	first usage of 'read', the command can be used without an argument to reload the most recently loaded file. 
+	note that the name of the last file read will be stored regardless of whether the read operation succeeded.
+	Usage: read [FILE], read
+print:-
+	Description: Prints the inputted program, address table and assembly's binary output to the console, or 
+	prints the contents of the memory location specified by ADDRESS.
+	Usage: print, print memory [ADDRESS]
+log:-
+	Description: Prints the logs of the current session. Will print the 10 most recent entries by default, unless
+	the -f or --full flags are specified.
+	Usage: log (-f | --full)
+clear:- 
+	Description: Clears the inputted program, address table and assembly's binary output.
+	Usage: clear
+assemble:-
+	Description: assembles the inputted program into binary. Provides debug information if an error is encountered.
+	Usage: assemble
+load:-
+	Description: Loads the binary program into memory, with each instruction loaded into it's specified address
+	Usage: load
+run:-
+	Description: Runs the program from memory (program must be loaded with 'load' beforehand). Will begin from
+	memory location 0 by default, and an address can be specified to start running from. Debug mode can be 
+	activated with the -d or --debug flags.
+	Usage: run (ADDRESS) ()
+quit:-
+	Description: Quits the program.
+	Usage: quit
+	
+An example of a series of commands to input:
+
+>> read test_program.txt
+>> assemble
+>> print
+>> load
+>> run 100 -d
+>> print memory 105
+>> log -f
+>> quit
