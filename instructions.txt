@@ -1,9 +1,12 @@
-Programs to 
+Welcome to the instruction manual for this implementation of the Mano Machine!
 
-List of commands:
+- Programs to be run should be placed in a directory named 'programs' located in the same directory as the executable.
+- The files containing the programs should be .txt files.
 
-Note: Square brackets specify required arguments, parentheses specify optional arguments, "|" means that both
-arguments are equivalent and either is accepted, and a comma signifies alternative forms of the command.
+List of console commands:
+
+Note: Square brackets '[]' specify required arguments, parentheses '()' specify optional arguments, pipe '|' means that both
+arguments are equivalent and either is accepted, and a comma ',' signifies alternative forms of the command.
 
 read:-
 	Description: Inputs the text file which contains the program. The file name is specified by FILE, without

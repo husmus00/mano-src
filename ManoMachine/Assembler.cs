@@ -153,18 +153,16 @@ namespace ManoMachine
                     int commaLocation = line.IndexOf(',');
                     string label = line.Substring(0, commaLocation).Trim();
 
-                    // checks if invalidL
+                    // checks if invalid
                     if (psuedoInstructions.Contains(label))
                     {
-                        Logger.Print("Assembler", "Cannot use invalid label \"" + label + "\"");
-                        Logger.Log("Assembler", "Cannot use invalid label \"" + label + "\"");
+                        Logger.PrintAndLog("Assembler", "Cannot use invalid label \"" + label + "\"");
                         ErrorAtLine(i);
                         return (passFailed, null);
                     }
                     else if (addressSymbolTable.ContainsKey(label))
                     {
-                        Logger.Print("Assembler", "Label \"" + label + "\" is already used");
-                        Logger.Log("Assembler", "Label \"" + label + "\" is already used");
+                        Logger.PrintAndLog("Assembler", "Label \"" + label + "\" is already used");
                         ErrorAtLine(i);
                         return (passFailed, null);
                     }
@@ -254,23 +252,25 @@ namespace ManoMachine
                         string operand = parsedLine[1];
                         if (!int.TryParse(operand, out _))
                             ErrorAtLine(i, "Invalid operand \"" + operand + "\" for instruction \"" + instruction + "\"", operand);
-
-                        // If operand is a valid number proceed to convert into proper format
-                        if (instruction == "DEC")
+                        else
                         {
-                            ushort decOperand = (ushort)short.Parse(operand); // convert the operand to an unsigned form
-                            binaryInstruction = decOperand.ToString("X").PadLeft(4, '0');
-                            binaryProgram.Add(binaryLocation, binaryInstruction);
+                            // If operand is a valid number proceed to convert into proper format
+                            if (instruction == "DEC")
+                            {
+                                ushort decOperand = (ushort)short.Parse(operand); // convert the operand to an unsigned form
+                                binaryInstruction = decOperand.ToString("X").PadLeft(4, '0');
+                                binaryProgram.Add(binaryLocation, binaryInstruction);
 
-                            Logger.Print("Assembler", "Instruction \"" + instruction + "\" at program line " + i + " and converted to \"" + binaryInstruction + "\" at binary program location " + binaryLocation);
-                        }
-                        else if (instruction == "HEX")
-                        {
-                            ushort hexOperand = (ushort)ushort.Parse(operand, System.Globalization.NumberStyles.HexNumber);
-                            binaryInstruction = hexOperand.ToString("X").PadLeft(4, '0');
-                            binaryProgram.Add(binaryLocation, binaryInstruction);
+                                Logger.Print("Assembler", "Instruction \"" + instruction + "\" at program line " + i + " and converted to \"" + binaryInstruction + "\" at binary program location " + binaryLocation);
+                            }
+                            else if (instruction == "HEX")
+                            {
+                                ushort hexOperand = (ushort)ushort.Parse(operand, System.Globalization.NumberStyles.HexNumber);
+                                binaryInstruction = hexOperand.ToString("X").PadLeft(4, '0');
+                                binaryProgram.Add(binaryLocation, binaryInstruction);
 
-                            Logger.Print("Assembler", "Instruction \"" + instruction + "\" at program line " + i + " and converted to \"" + binaryInstruction + "\" at binary program location " + binaryLocation);
+                                Logger.Print("Assembler", "Instruction \"" + instruction + "\" at program line " + i + " and converted to \"" + binaryInstruction + "\" at binary program location " + binaryLocation);
+                            }
                         }
                     }
                     else

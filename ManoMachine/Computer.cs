@@ -6,7 +6,7 @@ namespace ManoMachine
 {
     class Computer
     {
-        private static readonly string version = "0.1.4" ;
+        private static readonly string version = "0.1.5" ;
         private static readonly string stage = "Alpha";
 
         // [Obsolete("assemblyFailureFlag is no longer needed", true)]
@@ -243,9 +243,14 @@ namespace ManoMachine
 
         public static void Load()
         {
-            foreach (KeyValuePair<uint, string> instruction in binaryProgram.Content())
+            if (binaryProgram.Empty())
+                Logger.Print("Computer", "Binary program is empty, nothing to load");
+            else
             {
-                RAM[instruction.Key] = Convert.ToInt16(instruction.Value, 16);
+                foreach (KeyValuePair<uint, string> instruction in binaryProgram.Content())
+                {
+                    RAM[instruction.Key] = Convert.ToInt16(instruction.Value, 16);
+                }
             }
         }
 
@@ -313,11 +318,13 @@ namespace ManoMachine
             int opcode = GetOpcode();    // Bits 12-14
             int iBit = GetIndirectBit(); // Bit 15 (indirect bit)
 
+            /*
             if (IR.Word == 0)
             {
                 Logger.Print("Computer", "IR is 0");
                 S.Set(0);
             }
+            */
 
             if (tick < 3 && interruptRaised == 1)
                 Interrupt(tick);

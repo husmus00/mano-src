@@ -130,7 +130,10 @@ namespace ManoMachine
                 }
                 else if (program == "load")
                 {
-                    Computer.Load();
+                    if (arguments.Length > 0)
+                        Logger.Print("Console", "Command \"load\" takes no arguments");
+                    else
+                        Computer.Load();
                 }
                 else if (program == "run")
                 {

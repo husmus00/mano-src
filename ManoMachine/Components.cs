@@ -139,6 +139,14 @@ namespace ManoMachine
             }
         }
 
+        public bool Empty()
+        {
+            if (content.Count == 0)
+                return true;
+            else
+                return false;
+        }
+
         public void Set(Dictionary<uint, string> contentToSet)
         {
             Clear();
