@@ -28,5 +28,7 @@ I've programmed it in the C# .NET Core 3.1 framework using Visual Studio. I've u
 
 A working executable for Windows is located in the "**Working Version**" directory. If you want to use this program on Mac or Linux, you can run it using the .NET Core framework which you can read about [here](https://docs.microsoft.com/en-us/dotnet/core/introduction) and download [here](https://dotnet.microsoft.com/download/dotnet-core) (Note that in this case you will only use the .cs files and not the rest of the VS project files).
 
+Example programs are located in the "**Example programs**" directory of the root directory, containing some programs that demonstrate how to write programs and to test how (and if) the machine works.
+
 # License
 This project is licensed under the GNU general public license (GPLv3). If you simply intend to use this program then you shouldn't be concerned, but if you want to modify and/or distribute this project make sure to read the terms of the license [here](https://www.gnu.org/licenses/gpl-3.0.en.html) or read the license file included in the root directory.

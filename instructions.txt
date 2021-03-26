@@ -1,11 +1,78 @@
 Welcome to the instruction manual for this implementation of the Mano Machine!
 
+"CAS" refers to "Computer Systems Architecture" 3rd Edition by Morris M. Mano
+
+# Writing programs:
+
 - Programs to be run should be placed in a directory named 'programs' located in the same directory as the executable.
-- The files containing the programs should be .txt files.
+- Files containing programs should be .txt files.
+- A list of available instructions and their symbols and codes can be found on page 175 of CAS
+- A forward slash '/' signifies a comment and can be placed on a line by itself or after an instruction on the same line
+- Although unnecessary, specifying an ORG instruction at the beginning of a program is good practice. (ORG will default to 0 otherwise)
+
+---------------------------------------------
+
+# Reading programs:
+
+- Reading a program into the mano machine is done through the 'read' console command.
+- Reading a program a second time will overwrite the previously read program.
+- Note that the assembled program does not change on a read (until the 'assemble' command is entered again).
+- If you get an error, please make sure that the file is placed in the 'programs' directory, is a .txt file, and that you have typed the file name correctly.
+- You can check the log.txt file for more detailed read error information
+- You can view the inputted program by typing 'print' into the console
+
+---------------------------------------------
+
+# Assembling programs and debugging:
+
+- Assembling the inputted program is done by entering the 'assemble' command into the console.
+- The assembler runs in two stages (passes), as specified by CAS:
+	* The first pass generates a table containing user-defined labels and their addressess in the program (the address symbol table).
+	  It also sets ORG to 0 if it is missing. (See Fig. 6-1 of CAS)
+	* The second pass converts the program to binary by means of 4 lookup tables (3 of which contain instruction names, and one of which is the address symbol table)
+- The inputted program, the address symbol table and the binary program are stored seperately and can all be viewed by typing 'print' into the console.
+
+Debugging:
+
+The assembler will give some debug information when encountering an error. There are 3 possible sources of errors:
+* Invalid instruction
+* Invalid label
+* Invalid operand
+
+A debug error entry will look something like this:
+
+  Error No.1 at line 5:
+   <5> A, DEC hello
+              ^
+       Invalid operand "hello" for instruction "DEC"
+	   
+The first line specifies the error no. and which line of the source program the error was encountered at. The second line shows the instruction which caused the error.
+The third line is a carat which points to the source of the error (Note that in some cases the carat will point to the wrong part of the instruction (Sorry) hopefully this problem will be taken care of)
+The fourth line is the error message explaining why the error occured.
+
+---------------------------------------------
+
+# Running programs:
+
+- The binary program outputted by the assembler can be loaded into memory by typing 'load' into the console. This will transfer the binary instructions based on their memory locations(offsetted by ORG)
+- Multiple programs can be loaded into memory at once. Note that if the memory locations of any instructions overlap between programs the most recent program load will overwrite any previous instructions
+  (if overlap has occured). This applies to re-loading the same program.
+- Execution is begun by typing 'run' into the console. The machine will begin executing code at memory location 0.
+- Memory is initialized with 0s. Note that if a program is not loaded at memory location 0 the machine will execute an AND instruction for every empty memory location (since 0000 is an AND instruction).
+  This can be remedied by either setting ORG to 0 in the source program or specifying an address when typing the 'run' command (refer to the console commands below)
+- As mentioned above, you can load multiple programs into memory. For example, you can load a program with ORG 100 (and length of 8 instructions) and a program with ORG 108, and they will execute as one continous program
+- Note that in the above case, you will need to make sure that the program(s) earlier in memory do not contain a HLT instruction otherwise execution will halt before reaching the rest of the code
+- Memory state is continous accross executions and loads, meaning that results of execution can vary between runs depending on the contents of the program(s). Memory is reset by restarting the machine.
+
+---------------------------------------------
+
+# The console:
+
+The console offers a convenient way to interface with the mano machine.
 
 List of console commands:
 
-Note: Square brackets '[]' specify required arguments, parentheses '()' specify optional arguments, pipe '|' means that both
+Note: Square brackets '[]' specify required arguments, parentheses '()' specify optional arguments, a pipe '|' means that both
 arguments are equivalent and either is accepted, and a comma ',' signifies alternative forms of the command.
 
 read:-
@@ -40,7 +107,7 @@ quit:-
 	Description: Quits the program.
 	Usage: quit
 
---------------------------------------------
+---------------------------------------------
 	
 An example of a series of commands to input:
 

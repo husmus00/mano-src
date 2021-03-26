@@ -133,7 +133,7 @@ namespace ManoMachine
             {
                 return content.Count();
             }
-            catch (Exception e)
+            catch
             {
                 return 0;
             }

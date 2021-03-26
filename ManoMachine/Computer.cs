@@ -6,7 +6,7 @@ namespace ManoMachine
 {
     class Computer
     {
-        private static readonly string version = "0.1.5" ;
+        private static readonly string version = "0.1.6" ;
         private static readonly string stage = "Alpha";
 
         // [Obsolete("assemblyFailureFlag is no longer needed", true)]
@@ -67,6 +67,7 @@ namespace ManoMachine
             // Prints basic info to the console on program launch
             Console.WriteLine("Mano Machine".ToUpper());
             Console.WriteLine("Version " + version + " " + stage);
+            Console.WriteLine(new string('-', 20));
             Console.WriteLine();
         }
 
@@ -74,7 +75,9 @@ namespace ManoMachine
         {
             if (fileName.Trim() != "")
             {
-                fileName += ".txt";
+                if (!fileName.EndsWith(".txt"))
+                    fileName += ".txt";
+
                 //specifies path to the text file, must be located in "programs" directory, which must be located in same directory as executable file
                 string path = currentDirectory + "programs\\" + fileName;
                 string[] program;
@@ -100,9 +103,9 @@ namespace ManoMachine
                 }
                 catch (Exception e)
                 {
-                    Logger.Log("Computer", "Failed to read file \"" + fileName + "\" from directory \"" + currentDirectory + "\". Exception: \"" + e.Message + "\"");
-                    Logger.Print("Computer", "Could not read file \"" + fileName + "\", check log for details");
-                    program = new string[0];
+                    Logger.Log("Computer", "ERROR: Failed to read file \"" + fileName + "\" from directory \"" + currentDirectory + "\". Exception: \"" + e.Message + "\"");
+                    Logger.Print("Computer", "ERROR: Could not read file \"" + fileName + "\", check log for details");
+                    // program = new string[0];
                 }
             }
             else
@@ -284,6 +287,8 @@ namespace ManoMachine
 
         public static void Run(int programStart = 0, bool debug = false)
         {
+            Load();
+
             // Figure 5-15 chapter 5 page 158 (169 in reader)
             if (programStart < 0 || programStart > 4095)
             {
