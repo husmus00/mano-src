@@ -17,7 +17,7 @@ Note that I am *not* currently planning on adding any new (major) features to th
 * Possibly adding more commands to the console for a little more ease-of-use, such as writing the binary output of the assembler to a file (although you can copy it from the console if you want)
 * Improving the "debug" mode of program execution.
 
-The entire project was created from scratch although I did take some inspiration from Github user [Amitayh](https://github.com/amitayh) and [their python implementation of the Mano Machine](https://github.com/amitayh/mano-machine-emulator) (I was not satisfied with this implementation as it functions as a library rather than a working program, since there's no interface to use it in any way).
+The entire project was created from scratch although I did take some inspiration from Github user [Amitayh](https://github.com/amitayh) and [their python implementation of the Mano Machine](https://github.com/amitayh/mano-machine-emulator) (I was not satisfied with this implementation as it functions as a library rather than a working program, since there was no interface to use it in any way as of the time of this project's creation).
 
 # The Program
 Instructions for using the program are in the **instructions.txt** file in the root of this project.

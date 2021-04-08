@@ -12,5 +12,5 @@ DIF, HEX 0    /Sum stored in location C
 
 / Example program to demonstrate subtraction.
 / Table 6-8 page 181 "Computer System Architecture" 3rd Ed. Morris M. Mano.
-/ This program will subtract the values at lines 6,7 (Labels MIN,SUB),
-/ and store the result at line 8 (Label DIF)
+/ This program will subtract the values at lines 8,9 (Labels MIN,SUB),
+/ and store the result at line 10 (Label DIF)
