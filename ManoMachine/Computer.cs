@@ -8,6 +8,7 @@ namespace ManoMachine
     {
         private static readonly string version = "0.1.6" ;
         private static readonly string stage = "Alpha";
+        private static readonly string link = "https://github.com/Husmus00/Mano-Machine-CSharp";
 
         // [Obsolete("assemblyFailureFlag is no longer needed", true)]
         // private static bool assemblyFailureFlag = false;
@@ -28,7 +29,7 @@ namespace ManoMachine
         private static readonly Register IR   = new Register(16); // Instruction register
         private static readonly Register TR   = new Register(16); // Temporary register
         private static readonly Register INPR = new Register(8);  // Input register
-        private static readonly Register OUTR = new Register(8);  // Ouptut register
+        private static readonly Register OUTR = new Register(8);  // Output register
         private static readonly Register SC   = new Register(3);  // Sequence counter
         private static readonly Register E    = new Register(1);  // Carry bit
         private static readonly Register S    = new Register(1);  // Start / stop computer
@@ -67,6 +68,7 @@ namespace ManoMachine
             // Prints basic info to the console on program launch
             Console.WriteLine("Mano Machine".ToUpper());
             Console.WriteLine("Version " + version + " " + stage);
+            Console.WriteLine("Original repository at " + link);
             Console.WriteLine(new string('-', 20));
             Console.WriteLine();
         }
