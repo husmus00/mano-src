@@ -456,7 +456,10 @@ namespace ManoMachine
 
         private static void ExecuteMRI(int opcode, int tick)
         {
+            // TODO:
+            /*switch (opcode) {
 
+            }*/
             if (opcode == 0)
                 ExecuteAND(tick);
             else if (opcode == 1)
@@ -548,7 +551,7 @@ namespace ManoMachine
 
             if (tick == 4)
             {
-                Logger.PrintAndLog("Computer", "D1T4: DR <- M[AR]"); // A typo exists on this page (150) [MAR] instead of [AR]
+                Logger.PrintAndLog("Computer", "D1T4: DR <- M[AR]"); // A typo exists on this page (150) [MAR] instead of M[AR]
                 DR.Set(ReadFromMemory());
                 SC.Increment();
             }

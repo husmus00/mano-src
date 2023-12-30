@@ -201,14 +201,6 @@ namespace ManoMachine
             // set { word = (ushort)value; }
         }
 
-        /*
-        public ushort Word
-        {
-            get { return word; }
-            set { word = value; }
-        }
-        */
-
         public void Set(int w)
         {
             // word = (ushort)(w % maxValue);
@@ -270,5 +262,13 @@ namespace ManoMachine
                 Set(word | 1);
             return msb;
         }
+
+        /*
+        public ushort Word
+        {
+            get { return word; }
+            set { word = value; }
+        }
+        */
     }
 }

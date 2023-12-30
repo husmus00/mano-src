@@ -38,7 +38,7 @@ public class Settings
 
 	private static void Write()
     {
-		string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.cfg";
+		string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.txt";
 		string contents = "";
 		foreach (KeyValuePair<string, string> kvp in settings)
 			contents += kvp.Key + "=" + kvp.Value + "\n";
@@ -47,7 +47,7 @@ public class Settings
 
 	public static void Read()
     {
-		string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.cfg";
+		string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.txt";
 
 		if (File.Exists(settingsFile))
         {
@@ -65,15 +65,15 @@ public class Settings
 					if (settings.ContainsKey(parameter))
 						settings[parameter] = value;
 					else
-						Logger.Print("Settings", "ERROR: Invalid parameter \"" + parameter + "\" in settings.cfg");
+						Logger.Print("Settings", "ERROR: Invalid parameter \"" + parameter + "\" in settings.txt");
 				}
 				catch
                 {
-					Logger.Print("Settings", "ERROR: Invalid line \"" + l + "\" in settings.cfg");
+					Logger.Print("Settings", "ERROR: Invalid line \"" + l + "\" in settings.txt");
                 }
             }
         }
-		// Write the settings.cfg file with the default values if it doesn't exist
+		// Write the settings.txt file with the default values if it doesn't exist
 		else
 			Write();
     }
