@@ -8,7 +8,8 @@ namespace ManoMachine
     {
         private static readonly string version = "0.1.6" ;
         private static readonly string stage = "Alpha";
-        private static readonly string link = "https://github.com/Husmus00/Mano-Machine-CSharp";
+        private static readonly string project_link = "https://github.com/husmus00/mano-machine-csharp";
+        private static readonly string web_app_link = "https://husmus.dev/mano-web";
 
         // [Obsolete("assemblyFailureFlag is no longer needed", true)]
         // private static bool assemblyFailureFlag = false;
@@ -68,7 +69,8 @@ namespace ManoMachine
             // Prints basic info to the console on program launch
             Console.WriteLine("Mano Machine".ToUpper());
             Console.WriteLine("Version " + version + " " + stage);
-            Console.WriteLine("Original repository at " + link);
+            Console.WriteLine("Original repository at " + project_link);
+            Console.WriteLine("Web app available at " + web_app_link);
             Console.WriteLine(new string('-', 20));
             Console.WriteLine();
         }
