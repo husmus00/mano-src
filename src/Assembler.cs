@@ -148,7 +148,7 @@ namespace ManoMachine
                 }
 
                 // Check for label
-                if (line.Contains(','))
+                if (line.Contains(","))
                 {
                     int commaLocation = line.IndexOf(',');
                     string label = line.Substring(0, commaLocation).Trim();
@@ -378,7 +378,7 @@ namespace ManoMachine
 
         public static string RemoveLabel(string instruction)
         {
-            if (instruction.Contains(','))
+            if (instruction.Contains(","))
             {
                 int commaLocation = instruction.IndexOf(',');
                 // Logger.Print("Assembler", "Removing label from instruction \"" + instruction + "\", substringing from " + (commaLocation + 1) + " with length " + (instruction.Length - commaLocation - 1));

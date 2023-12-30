@@ -92,7 +92,7 @@ namespace ManoMachine
 
             Console.WriteLine();
 
-            string[] lastTenLines = logList.TakeLast(10).ToArray();
+            string[] lastTenLines = logList.Take(-10).ToArray();
 
             foreach (string line in lastTenLines)
             {

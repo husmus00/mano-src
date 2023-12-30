@@ -1,80 +1,84 @@
-﻿using ManoMachine;
+﻿// using ManoMachine;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class Settings
+namespace ManoMachine
 {
-	// Populated with default settings
-	private static Dictionary<string, string> settings = new Dictionary<string, string> {
-		{"mount", ""},
-		{"debug", "false"},
-	};
-	
-	public Settings()
-	{
-
-	}
-
-	public static string GetValue(string parameter)
+    public class Settings
     {
-		if (settings.ContainsKey(parameter))
-			return settings[parameter];
-		else
-			Logger.Print("Settings", "Attempted to access unknown parameter \"" + parameter + "\"");
-		return string.Empty;
-    }
+        // Populated with default settings
+        private static Dictionary<string, string> settings = new Dictionary<string, string> {
+        {"mount", ""},
+        {"debug", "false"},
+    };
 
-	public static void SetValue(string parameter, string value)
-	{
-		if (settings.ContainsKey(parameter))
+        public Settings()
         {
-			settings[parameter] = value;
-			Write();
-		}
-		else
-			Logger.Print("Settings", "Attempted to set unknown parameter \"" + parameter + "\"");
-	}
 
-	private static void Write()
-    {
-		string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.txt";
-		string contents = "";
-		foreach (KeyValuePair<string, string> kvp in settings)
-			contents += kvp.Key + "=" + kvp.Value + "\n";
-		File.WriteAllText(settingsFile, contents);
-	}
+        }
 
-	public static void Read()
-    {
-		string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.txt";
-
-		if (File.Exists(settingsFile))
+        public static string GetValue(string parameter)
         {
-			string[] contents = File.ReadAllLines(settingsFile);
-			foreach (string l in contents)
+            if (settings.ContainsKey(parameter))
+                return settings[parameter];
+            else
+                Logger.Print("Settings", "Attempted to access unknown parameter \"" + parameter + "\"");
+            return string.Empty;
+        }
+
+        public static void SetValue(string parameter, string value)
+        {
+            if (settings.ContainsKey(parameter))
             {
-				try
-                {
-					// Each parameter is in a "parameter=value" format
-					string parameter = l.Split('=')[0];
-					string value = l.Split('=')[1];
+                settings[parameter] = value;
+                Write();
+            }
+            else
+                Logger.Print("Settings", "Attempted to set unknown parameter \"" + parameter + "\"");
+        }
 
-					// Console.WriteLine("parameter is \"" + parameter + "\" - value is \"" + value + "\"");
+        private static void Write()
+        {
+            string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.txt";
+            string contents = "";
+            foreach (KeyValuePair<string, string> kvp in settings)
+                contents += kvp.Key + "=" + kvp.Value + "\n";
+            File.WriteAllText(settingsFile, contents);
+        }
 
-					if (settings.ContainsKey(parameter))
-						settings[parameter] = value;
-					else
-						Logger.Print("Settings", "ERROR: Invalid parameter \"" + parameter + "\" in settings.txt");
-				}
-				catch
+        public static void Read()
+        {
+            string settingsFile = AppDomain.CurrentDomain.BaseDirectory + "settings.txt";
+
+            if (File.Exists(settingsFile))
+            {
+                string[] contents = File.ReadAllLines(settingsFile);
+                foreach (string l in contents)
                 {
-					Logger.Print("Settings", "ERROR: Invalid line \"" + l + "\" in settings.txt");
+                    try
+                    {
+                        // Each parameter is in a "parameter=value" format
+                        string parameter = l.Split('=')[0];
+                        string value = l.Split('=')[1];
+
+                        // Console.WriteLine("parameter is \"" + parameter + "\" - value is \"" + value + "\"");
+
+                        if (settings.ContainsKey(parameter))
+                            settings[parameter] = value;
+                        else
+                            Logger.Print("Settings", "ERROR: Invalid parameter \"" + parameter + "\" in settings.txt");
+                    }
+                    catch
+                    {
+                        Logger.Print("Settings", "ERROR: Invalid line \"" + l + "\" in settings.txt");
+                    }
                 }
             }
+            // Write the settings.txt file with the default values if it doesn't exist
+            else
+                Write();
         }
-		// Write the settings.txt file with the default values if it doesn't exist
-		else
-			Write();
     }
 }
+
