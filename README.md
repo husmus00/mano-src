@@ -26,7 +26,7 @@ Instructions for using the program are in the **instructions.txt** file in the r
 
 The program is designed with a console interface for ease of use, and since I envisioned this as a tool for use by students, I've added a little extra functionality in addition to the assembler and emulator, mainly a "debug" mode which steps through a program and shows the contents of the registers on each step.
 
-I've programmed it in the C# .NET Core ~3.1 framework~ (Updated to .NET Core 8.0 LTS) using Visual Studio. I've uploaded the .sln project file so you can open it in VS if you like, or you can just use the .cs files located in the "**ManoMachine**" directory.
+I've programmed it in the C# .NET Core ~3.1 framework~ (Updated to .NET Core 8.0 LTS) using Visual Studio. I've uploaded the .sln project file so you can open it in VS if you like, or you can just use the .cs files located in the "**src**" directory.
 
 A working executable for Windows is located in the "**Working Version**" directory. If you want to use this program on Mac or Linux, you can run it using the .NET Core framework which you can read about [here](https://docs.microsoft.com/en-us/dotnet/core/introduction) and download [here](https://dotnet.microsoft.com/download/dotnet-core) (Note that in this case you will only use the .cs files and not the rest of the VS project files).
 
