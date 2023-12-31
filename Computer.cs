@@ -39,14 +39,14 @@ namespace ManoMachine
         private static readonly Register FGI  = new Register(1);  // Input register available
         private static readonly Register FGO  = new Register(1);  // Output register available
 
-        public Computer()
+        public Computer(string mode)
         {
             // binaryProgram.Set(new Dictionary<uint, string> { { 0x100, "7400" } }); // Testing
 
-            Start();
+            Start(mode);
         }
 
-        private void Start()
+        private void Start(string mode)
         {
             InitialInfo();
             Logger.Initialize();
@@ -61,7 +61,10 @@ namespace ManoMachine
             if (fileToMount != "")
                 ReadProgram(fileToMount);
 
-            ComputerConsole.Prompt();
+            if (mode == "desktop")
+            {
+                ComputerConsole.Prompt();
+            }
         }
 
         public static void InitialInfo()
