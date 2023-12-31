@@ -62,7 +62,7 @@ namespace ManoMachine
                         string parameter = l.Split('=')[0];
                         string value = l.Split('=')[1];
 
-                        // Console.WriteLine("parameter is \"" + parameter + "\" - value is \"" + value + "\"");
+                        // Logger.WriteLine("parameter is \"" + parameter + "\" - value is \"" + value + "\"");
 
                         if (settings.ContainsKey(parameter))
                             settings[parameter] = value;

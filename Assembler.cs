@@ -12,6 +12,12 @@ namespace ManoMachine
         protected const bool passSucceeded = true;
         protected const bool passFailed = false; // !passSucceeded
 
+        //enum PassStatus
+        //{
+        //    passSucceeded = 1,
+        //    passFailed = 0,
+        //}
+
         protected static int ErrorCount = 0; // used to determine final abort message if ErrorCount > 0
 
         protected static readonly List<string> psuedoInstructions = new List<string>
@@ -226,7 +232,7 @@ namespace ManoMachine
                 string[] parsedLine = ParseInstruction(line);
                 string instruction = parsedLine[0];
                 string binaryInstruction = ""; // Final instruction to be added to binaryProgram list
-                // Console.WriteLine(binaryLocation);
+                // Logger.PrintWriteLine(binaryLocation);
 
                 // After removing label and comment, check for number of components in each line.
                 // Each line must contain no less than 1 component (an instruction) and
@@ -408,7 +414,7 @@ namespace ManoMachine
             if (lineIndex > -1)
             {
                 string faultyLine = program[lineIndex].Trim();
-                Console.WriteLine();
+                Logger.WriteLine();
                 Logger.PrintAndLog("Assembler", "Error No." + ErrorCount + " at line " + lineIndex + ": ");
                 Logger.PrintAndLog("Assembler", " <" + lineIndex + "> " + faultyLine);
 
@@ -430,7 +436,7 @@ namespace ManoMachine
             else
                 Logger.PrintAndLog("Assembler", "Error in program");
 
-            Console.WriteLine();
+            Logger.WriteLine();
         }
     }
 }

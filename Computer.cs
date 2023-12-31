@@ -67,12 +67,12 @@ namespace ManoMachine
         public static void InitialInfo()
         {
             // Prints basic info to the console on program launch
-            Console.WriteLine("Mano Machine".ToUpper());
-            Console.WriteLine("Version " + version + " " + stage);
-            Console.WriteLine("Original repository at " + project_link);
-            Console.WriteLine("Web app available at " + web_app_link);
-            Console.WriteLine(new string('-', 20));
-            Console.WriteLine();
+            Logger.WriteLine("Mano Machine".ToUpper());
+            Logger.WriteLine("Version " + version + " " + stage);
+            Logger.WriteLine("Original repository at " + project_link);
+            Logger.WriteLine("Web app available at " + web_app_link);
+            Logger.WriteLine(new string('-', 20));
+            Logger.WriteLine();
         }
 
         public static void ReadProgram(string fileName)
@@ -119,11 +119,11 @@ namespace ManoMachine
         public static void PrintAll()
         {
             PrintAssemblyProgram();
-            Console.WriteLine();
+            Logger.WriteLine();
             PrintAddressSymbolTable();
-            Console.WriteLine();
+            Logger.WriteLine();
             PrintBinaryProgram();
-            Console.WriteLine();
+            Logger.WriteLine();
         }
 
         public static void PrintAssemblyProgram()
@@ -132,7 +132,7 @@ namespace ManoMachine
 
             if (assemblyProgram.Size() > 0)
             {
-                Console.WriteLine("Assembly program:");
+                Logger.WriteLine("Assembly program:");
                 assemblyProgram.Print();
             }
             else
@@ -148,7 +148,7 @@ namespace ManoMachine
 
             if (addressSymbolTable.Size() > 0)
             {
-                Console.WriteLine("Address Symbol Table:");
+                Logger.WriteLine("Address Symbol Table:");
                 addressSymbolTable.Print();
             }
             else
@@ -164,7 +164,7 @@ namespace ManoMachine
 
             if (binaryProgram.Size() > 0)
             {
-                Console.WriteLine("Binary Program:");
+                Logger.WriteLine("Binary Program:");
                 binaryProgram.Print();
             }
             else
@@ -186,7 +186,7 @@ namespace ManoMachine
             else
             {
                 string line = Convert.ToString(RAM[location], 16) + " (bin: " + Convert.ToString(RAM[location], 2) + ") (dec: " + RAM[location] + ")";
-                Console.WriteLine(line);
+                Logger.WriteLine(line);
             }
         }
 
@@ -223,7 +223,7 @@ namespace ManoMachine
 
                     Logger.Print("Computer", "Pass one of assembly ended successfully");
                     Logger.Log("Computer", "Pass one of assembly ended successfully");
-                    Console.WriteLine();
+                    Logger.WriteLine();
 
                     Logger.Print("Computer", "Starting pass two of assembly");
                     Logger.Log("Computer", "Starting pass two of assembly");
@@ -239,7 +239,7 @@ namespace ManoMachine
 
                         Logger.Print("Computer", "Pass two of assembly ended successfully");
                         Logger.Log("Computer", "Pass two of assembly ended successfully");
-                        Console.WriteLine();
+                        Logger.WriteLine();
                     }
                 }
             }
@@ -252,7 +252,7 @@ namespace ManoMachine
         public static void AssemblyFailed()
         {
             // assemblyFailureFlag = true;
-            Console.WriteLine();
+            Logger.WriteLine();
             Logger.Print("Computer", "Assembly Failed");
             Logger.Log("Computer", "Assembly Failed");
         }
@@ -279,23 +279,23 @@ namespace ManoMachine
 
         private static void DebugMode()
         {
-            Console.Clear();
-            Console.WriteLine("DEBUG MODE");
-            Console.WriteLine();
-            Console.WriteLine("AR: " + AR.Word + " (Hex: " + AR.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("PC: " + PC.Word + " (Hex: " + PC.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("DR: " + DR.Word + " (Hex: " + DR.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("AC: " + AC.Word + " (Hex: " + AC.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("IR: " + IR.Word + " (Hex: " + IR.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("TR: " + TR.Word + " (Hex: " + TR.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("SC: " + SC.Word + " (Hex: " + SC.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("E : " + E.Word + " (Hex: " + E.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("S : " + S.Word + " (Hex: " + S.Word.ToString("X").PadLeft(4, '0') + ")");
-            Console.WriteLine("Memory at AR: " + RAM[AR.Word] + " (Hex: " + RAM[AR.Word].ToString("X").PadLeft(4, '0') + ")");
+            Interface.Console.Clear();
+            Logger.WriteLine("DEBUG MODE");
+            Logger.WriteLine();
+            Logger.WriteLine("AR: " + AR.Word + " (Hex: " + AR.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("PC: " + PC.Word + " (Hex: " + PC.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("DR: " + DR.Word + " (Hex: " + DR.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("AC: " + AC.Word + " (Hex: " + AC.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("IR: " + IR.Word + " (Hex: " + IR.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("TR: " + TR.Word + " (Hex: " + TR.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("SC: " + SC.Word + " (Hex: " + SC.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("E : " + E.Word + " (Hex: " + E.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("S : " + S.Word + " (Hex: " + S.Word.ToString("X").PadLeft(4, '0') + ")");
+            Logger.WriteLine("Memory at AR: " + RAM[AR.Word] + " (Hex: " + RAM[AR.Word].ToString("X").PadLeft(4, '0') + ")");
 
-            Console.WriteLine();
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            Logger.WriteLine();
+            Logger.WriteLine("Press any key to continue...");
+            Interface.Console.ReadKey();
         }
 
         public static void Run(int programStart = 0, bool debug = false)

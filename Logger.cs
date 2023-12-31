@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Interface;
 
 namespace ManoMachine
 {
@@ -69,7 +70,7 @@ namespace ManoMachine
             }
             catch
             {
-                Console.WriteLine("LOG_ERROR: Could not add following message to log.txt: " + logMessage);
+                Interface.Console.WriteLine("LOG_ERROR: Could not add following message to log.txt: " + logMessage);
             }
         }
 
@@ -77,7 +78,17 @@ namespace ManoMachine
         {
             // string logDate = DateTime.Now.ToString("hh:mm:ss tt"); // e.g. 05:30:45 PM
             // string logMessage = "[" + source.ToUpper() + "]: " + message;
-            Console.WriteLine(message);
+            Interface.Console.WriteLine(message);
+        }
+
+        public static void WriteLine()
+        {
+            Interface.Console.WriteLine();
+        }
+
+        public static void WriteLine(string message) 
+        { 
+            Interface.Console.WriteLine(message);
         }
 
         public static void PrintAndLog(string source, string message)
@@ -90,13 +101,13 @@ namespace ManoMachine
         {
             Print("Logger", "Displaying final 10 log messages... use argument \"--full\" or \"-f\" for full log");
 
-            Console.WriteLine();
+            Interface.Console.WriteLine();
 
             string[] lastTenLines = logList.Take(-10).ToArray();
 
             foreach (string line in lastTenLines)
             {
-                Console.WriteLine("> " + line);
+                Interface.Console.WriteLine("> " + line);
             }
 
             Log("Logger", "Displaying final 10 log messages");
@@ -106,7 +117,7 @@ namespace ManoMachine
         {
             Print("Logger", "Displaying full log...");
 
-            Console.WriteLine("//");
+            Interface.Console.WriteLine("//");
 
             Log("Logger", "Displaying full log");
         }

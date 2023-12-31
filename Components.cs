@@ -46,15 +46,15 @@ namespace ManoMachine
             // retrives length of longest line by ordering by length in descending order, and returning the length of first instance
             int longestLineLength = content.OrderByDescending(s => s.Length).First().Length;
 
-            Console.WriteLine(new string('-', longestLineLength + 8)); // Add 8 to account for the leading number e.g. "[0001]: "
+            Logger.WriteLine(new string('-', longestLineLength + 8)); // Add 8 to account for the leading number e.g. "[0001]: "
 
             for (int i = 0; i < content.Count(); i++)
             {
                 string line = "[" + i.ToString().PadLeft(4, '0') + "]: " + content[i];
-                Console.WriteLine(line);
+                Logger.WriteLine(line);
             }
 
-            Console.WriteLine(new string('-', longestLineLength + 8));
+            Logger.WriteLine(new string('-', longestLineLength + 8));
         }
 
         public void Clear()
@@ -100,15 +100,15 @@ namespace ManoMachine
             // retrives length of longest label by ordering by length in descending order, and returning the length of first instance
             int longestLabelLength = content.OrderByDescending(s => s.Key.Length).First().Key.Length;
 
-            Console.WriteLine(new string('-', longestLabelLength + 11)); // Add 7 to account for " : " and label address (with padding) and side "|"s
+            Logger.WriteLine(new string('-', longestLabelLength + 11)); // Add 7 to account for " : " and label address (with padding) and side "|"s
 
             foreach (KeyValuePair<string, uint> label in content)
             {
                 string line = "| " + label.Key.PadLeft(longestLabelLength) + " : " + label.Value.ToString().PadLeft(4, '0') + " |";
-                Console.WriteLine(line);
+                Logger.WriteLine(line);
             }
 
-            Console.WriteLine(new string('-', longestLabelLength + 11));
+            Logger.WriteLine(new string('-', longestLabelLength + 11));
         }
 
         public void Clear()
@@ -160,17 +160,17 @@ namespace ManoMachine
 
         public void Print()
         {
-            Console.WriteLine(new string('-', 34));
-            Console.WriteLine(("| Adrs : Instruction").PadRight(33) + "|");
+            Logger.WriteLine(new string('-', 34));
+            Logger.WriteLine(("| Adrs : Instruction").PadRight(33) + "|");
 
             foreach (KeyValuePair<uint, string> binaryInstruction in content)
             {
                 string line = "| " + Convert.ToString(binaryInstruction.Key, 16).PadLeft(4, '0') + " : "
                     + binaryInstruction.Value
                     + " (" + Convert.ToString(Int32.Parse(binaryInstruction.Value, NumberStyles.HexNumber), 2).PadLeft(16, '0') + ") |";
-                Console.WriteLine(line);
+                Logger.WriteLine(line);
             }
-            Console.WriteLine(new string('-', 34));
+            Logger.WriteLine(new string('-', 34));
         }
 
         public void Clear()

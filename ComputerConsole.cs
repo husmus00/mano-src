@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Interface;
 
 namespace ManoMachine
 {
@@ -13,9 +14,9 @@ namespace ManoMachine
             while (true)
             {
                 // Read command and write log information
-                Console.WriteLine();
-                Console.Write(">> ");
-                string command = Console.ReadLine();
+                Interface.Console.WriteLine();
+                Interface.Console.Write(">> ");
+                string command = Interface.Console.ReadLine();
 
                 // Check if empty
                 if (String.IsNullOrWhiteSpace(command))
@@ -49,6 +50,7 @@ namespace ManoMachine
             if (program == "quit")
             {
                 Logger.Print("Console", "Quitting...");
+
                 return;
             }
             else if (program == "read")
