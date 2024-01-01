@@ -170,10 +170,29 @@ namespace ManoMachine
                     }
                 }
             }
+            else if (program == "help")
+            {
+                Logger.WriteLine(help_text);
+            }
             else
             {
                 Logger.Print("Console", "Unknown command \"" + program + "\"");
             }   
         }
+
+        static readonly string help_text =
+            """
+
+            For more information, visit 'https://github.com/husmus00/mano-machine-csharp/blob/main/instructions.txt'
+
+            Overview of basic operations:-
+                read [program]: Read program.txt (located in the 'programs' directory in the working directory)
+                assemble:       Assemble the program
+                load:           Load the assembled program into memory
+                run:            Run the program starting at memory location 0x00
+                print:          Print the contents of the text program, binary program, and address symbol table
+                log:            Print the contents of the log
+
+            """;
     }
 }

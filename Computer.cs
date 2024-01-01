@@ -6,7 +6,7 @@ namespace ManoMachine
 {
     class Computer
     {
-        private static readonly string version = "0.1.6" ;
+        private static readonly string version = "0.1.7" ;
         private static readonly string stage = "Alpha";
         private static readonly string project_link = "https://github.com/husmus00/mano-machine-csharp";
         private static readonly string web_app_link = "https://husmus.dev/mano-web";
@@ -61,6 +61,7 @@ namespace ManoMachine
             if (fileToMount != "")
                 ReadProgram(fileToMount);
 
+            Logger.WriteLine("Type \'help\' for more information");
             ComputerConsole.Prompt();
         }
 
