@@ -4,6 +4,12 @@ using System.IO;
 
 namespace ManoMachine
 {
+    enum AppMode
+    {
+        WebApp,
+        Desktop,
+    };
+
     class Computer
     {
         private static readonly string version = "0.1.7" ;
@@ -39,16 +45,16 @@ namespace ManoMachine
         private static readonly Register FGI  = new Register(1);  // Input register available
         private static readonly Register FGO  = new Register(1);  // Output register available
 
-        public Computer()
+        public Computer(AppMode mode)
         {
             // binaryProgram.Set(new Dictionary<uint, string> { { 0x100, "7400" } }); // Testing
 
-            Start();
+            Start(mode);
         }
 
-        private void Start()
+        private void Start(AppMode mode)
         {
-            InitialInfo();
+            InitialInfo(mode);
             Logger.Initialize();
             Settings.Read();
 
@@ -63,15 +69,24 @@ namespace ManoMachine
 
             Logger.WriteLine("Type \'help\' for more information");
             ComputerConsole.Prompt();
+            if (mode == AppMode.Desktop)
+            {
+                ComputerConsole.Prompt();
+            }
         }
 
-        public static void InitialInfo()
+        public static void InitialInfo(AppMode mode)
         {
             // Prints basic info to the console on program launch
             Logger.WriteLine("Mano Machine".ToUpper());
             Logger.WriteLine("Version " + version + " " + stage);
             Logger.WriteLine("Original repository at " + project_link);
-            Logger.WriteLine("Web app available at " + web_app_link);
+
+            if (mode == AppMode.Desktop)
+            {
+                Logger.WriteLine("Web app available at " + web_app_link);
+            }
+
             Logger.WriteLine(new string('-', 20));
             Logger.WriteLine();
         }
