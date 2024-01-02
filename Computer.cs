@@ -68,7 +68,6 @@ namespace ManoMachine
                 ReadProgram(fileToMount);
 
             Logger.WriteLine("Type \'help\' for more information");
-            ComputerConsole.Prompt();
             if (mode == AppMode.Desktop)
             {
                 ComputerConsole.Prompt();
