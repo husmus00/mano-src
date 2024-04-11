@@ -67,9 +67,15 @@ namespace ManoMachine
             if (fileToMount != "")
                 ReadProgram(fileToMount);
 
-            Logger.WriteLine("Type \'help\' for more information");
+            if (mode == AppMode.WebApp)
+            {
+                Logger.WriteLine("Type \'help\' in the command input for more information");
+            }
+
+
             if (mode == AppMode.Desktop)
             {
+                Logger.WriteLine("Type \'help\' for more information");
                 ComputerConsole.Prompt();
             }
         }
